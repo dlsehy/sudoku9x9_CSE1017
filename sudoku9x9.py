@@ -96,5 +96,6 @@ def sudoku_mini():
         else:
             print(n,": Wrong number! Try again.")
     print("Well done! Come again.")
+    #김현서 git push 연습
 
 sudoku_mini()
