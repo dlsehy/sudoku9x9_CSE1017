@@ -49,9 +49,9 @@ def deep_copy_board(board):
 # 난이도 입력 후 스도쿠 구멍의 갯수 리턴
 def get_level():
     print("Enter your level.")
-    level = input("Beginner=1, Intermediate=2, Advanced=3: ")
+    level = input("Beginner=1, Intermediate=2, Advanced=3 :\n")
     while level not in ("1", "2", "3"):
-        level = input("Beginner=1, Intermediate=2, Advanced=3: ")
+        level = input("Beginner=1, Intermediate=2, Advanced=3 :\n")
     if level == "1":
         return 6
     elif level == "2":
@@ -62,7 +62,7 @@ def get_level():
 
 # 보드 진행 상황
 def show_board(board):
-    print("    1 2 3 4 5 6 7 8 9 /in col")
+    print("    1 2 3 4 5 6 7 8 9 / in col")
     print("   -------------------")
     rowcount = 1
     for row in board:
@@ -122,7 +122,7 @@ def create_solution_board_9x9():
 
 # 기록불러오기 (파일 경로 수정 필요)
 def load_members():
-    file = open("C:/Users/전예준/Desktop/프기초csv/sudoku_members.csv", "r")
+    file = open("sudoku_members.csv", "r")
     members = {}
     for line in file:
         name, passwd, tries, points = line.strip('\n').split(',')
@@ -133,7 +133,7 @@ def load_members():
 
 # 기록저장하기
 def store_members(members):
-    file = open("C:/Users/전예준/Desktop/프기초csv/sudoku_members.csv", "w")
+    file = open("sudoku_members.csv", "r")
     names = members.keys()
     for name in names:
         passwd, tries, points = members[name]
@@ -151,20 +151,20 @@ def sudoku_mini():
     puzzle_board = make_holes(puzzle_board, no_of_holes)
     show_board(puzzle_board)
     try_points = no_of_holes + 3  # 도전기회 : 구멍의 갯수 +3 (전부 소모할 경우 패배, -1 을 리턴)
-    print("if you wanna leave,press 0(zero)")
+    print("If you wanna leave, Press 0(zero)")
     while no_of_holes > 0:
-        i = get_integer("Row#(1,2,3,4,5,6,7,8,9): ", 0, 9) - 1
+        i = get_integer("Row#(1,2,3,4,5,6,7,8,9) : ", 0, 9) - 1
         if i == -1:
-            print("see you again")
+            print("See you again")
             return 0
-        j = get_integer("Column#(1,2,3,4,5,6,7,8,9): ", 0, 9) - 1
+        j = get_integer("Column#(1,2,3,4,5,6,7,8,9) : ", 0, 9) - 1
         if j == -1:
-            print("see you again")
+            print("See you again")
             return 0
         if puzzle_board[i][j] != 0:
             print("Not empty!")
             continue
-        n = get_integer("Number(1,2,3,4,5,6,7,8,9): ", 0, 9)
+        n = get_integer("Number(1,2,3,4,5,6,7,8,9) : ", 0, 9)
         if n == solution_board[i][j]:
             puzzle_board[i][j] = n
             show_board(puzzle_board)
@@ -174,17 +174,17 @@ def sudoku_mini():
             print(n, ": Wrong number! Try again.")
             try_points -= 1
         if try_points == 0:
-            print("you lose..")
+            print("You lose..")
             return -1
     print("Well done! Come again.")
     return 1
 
 
 def login(members):
-    username = input("Enter your name: (4 letters max) ")
+    username = input("Enter your name (4 letters max) : ")
     while len(username) > 4:
-        username = input("Enter your name: (4 letters max) ")
-    trypasswd = input("Enter your password: ")
+        username = input("Enter your name (4 letters max) : ")
+    trypasswd = input("Enter your password : ")
     if username in members.keys():
         if trypasswd == members.get(username)[0]:
             tries = members.get(username)[1]
@@ -203,7 +203,7 @@ def login(members):
 def show_top5(members):
     print("----")
     rank_sorted = sorted(members.items(), key=lambda x: x[1][2], reverse=True)
-    print("All-time Top 5 based on the number of wins")
+    print("All-time Top 5 based on the number of wins.")
     rank = 1
     for member in rank_sorted[:5]:
         passwrd, tries, wins = member[1]
@@ -221,7 +221,7 @@ def play_sudoku_game():
     members = load_members()
 
     # 로그인
-    num_of_player = get_integer("solo-mode or multi-mode(enter 1 or 2)", 1, 2)
+    num_of_player = get_integer("Solo-mode or Multi-mode (Press 1 or 2) :\n", 1, 2)
     if num_of_player == 1:  # 솔로모드일 경우 게임을 기록하고 그 정보를 저장
         username, tries, wins, members = login(members)
 
@@ -233,7 +233,7 @@ def play_sudoku_game():
             print("Congratulations! You won!")
             wins += 1
         elif result == 0:
-            print("see you again")
+            print("See you again")
             return None
         elif result == -1:
             print("You lost the game.")
@@ -247,7 +247,7 @@ def play_sudoku_game():
         # 랭킹 보여주기
         show_top5(members)
     else:  # 둘 이상일 경우 게임의 승패를 가리고 종료
-        print("player 1's game")
+        print("Player 1's game")
         player1_result = sudoku_mini()
         if player1_result == 1:
             print("Congratulations! You cleared a stage!")
@@ -259,9 +259,9 @@ def play_sudoku_game():
 
         elif player1_result == -1:
             print("You lost the game.")
-            print("Now, please wait about next player")
+            print("Now, please wait about next player.")
 
-        print("now player 2's game")
+        print("Now player 2's game")
 
         player2_result = sudoku_mini()
 
@@ -270,14 +270,14 @@ def play_sudoku_game():
             return "..."
 
         if player1_result > player2_result:
-            print("player 1 wins ! ")
+            print("Player 1 wins ! ")
 
         elif player1_result < player2_result:
-            print("player 2 wins ! ")
+            print("Player 2 wins ! ")
 
         else:
-            print("it's a draw")
-            print("But Well done, both of you")
+            print("It's a draw")
+            print("But Well done, both of you.")
 
 
 play_sudoku_game()
