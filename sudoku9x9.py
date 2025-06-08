@@ -97,5 +97,8 @@ def sudoku_mini():
             print(n,": Wrong number! Try again.")
     print("Well done! Come again.")
     #김현서 git push 연습
+    #코드를 이런식으로 개인 로컬환경에서 수정하고 고치고 추가를 함
+    #이렇게 코드를 알아서 그냥 고침 -> 이게 예를 들면 프로젝트 안에서 수정 사항이라고 가정
+    #김현서 테스트 1
 
 sudoku_mini()
