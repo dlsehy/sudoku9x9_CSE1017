@@ -1,13 +1,6 @@
 # 스도쿠 팀 프로젝트 - 9 x 9 보드
 
-import random
-import copy
-
-# ========================
-# 보드 초기화 및 생성 관련 함수
-# ========================
-
-########### 기본 스도쿠 보드 제작 함수 설명##########
+########### 스도쿠 제작 함수 설명##########
 # r은 행(row) 번호, c는 열(column) 번호
 #
 # r % base는 현재 행이 i=a블록 안에서 몇 번째 줄인지를 나타냄
@@ -22,6 +15,11 @@ import copy
 #
 # % side는 전체 숫자 범위(1~9)로 순환하게 함
 
+import random
+import copy
+# ========================
+# 보드 초기화 및 생성 관련 함수
+# ========================
 
 # 기본 스도쿠 보드 제작
 def initialize_board_9x9():
@@ -29,7 +27,7 @@ def initialize_board_9x9():
     base = 3
     side = base * base
 
-    def pattern(r, c): #r은 행(row) 번호, c는 열(column) 번호
+    def pattern(r, c):
         # 스도쿠의 기본 패턴 생성 함수
         return (base * (r % base) + r // base + c) % side
 
@@ -84,11 +82,9 @@ def make_holes(board, no_of_holes):
             no_of_holes -= 1
     return board
 
-
 # ==========================
 # 입출력 및 보조 함수
 # ==========================
-
 
 # 깊은 복사
 def deep_copy_board(board):
@@ -108,7 +104,6 @@ def get_level():
         return 8
     else:
         return 10
-
 
 # 정수입력
 def get_integer(message, min_num, max_num):
@@ -141,7 +136,6 @@ def show_board(board):
 # ========================
 # 유저 기록 관련 함수
 # ========================
-
 
 # 기록불러오기 (파일 경로 수정 필요)
 def load_members():
@@ -252,11 +246,6 @@ def show_top5(members):
         rank += 1
 
 
-# ===========================
-# 메인 게임 루프
-# ===========================
-
-
 # 게임 실행 함수
 def play_sudoku_game():
     print("Welcome to Sudoku!")
@@ -290,7 +279,6 @@ def play_sudoku_game():
 
         # 랭킹 보여주기
         show_top5(members)
-
     else:  # 둘 이상일 경우 게임의 승패를 가리고 종료
         print("Player 1's game")
         player1_result = sudoku_mini()
