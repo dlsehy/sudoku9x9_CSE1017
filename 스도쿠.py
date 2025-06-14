@@ -114,7 +114,7 @@ def load_members():
     """기록 불러오기"""
     members = {}
     try:
-        with open("sudoku_members.csv", "r") as file:
+        with open("sudoku9x9/sudoku_members.csv", "r") as file:
             for line in file:
                 name, passwd, tries, wins = line.strip().split(',')
                 members[name] = (passwd, int(tries), int(wins))
@@ -125,7 +125,7 @@ def load_members():
 
 def store_members(members):
     """기록 저장하기"""
-    with open("sudoku_members.csv", "w") as file:
+    with open("sudoku9x9/sudoku_members.csv", "w") as file:
         for name, (passwd, tries, wins) in members.items():
             file.write(f"{name},{passwd},{tries},{wins}\n")
 

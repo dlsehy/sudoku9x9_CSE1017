@@ -146,7 +146,7 @@ def show_board(board):
 # 기록불러오기 (파일 경로 수정 필요)
 def load_members():
     """기록 불러오기"""
-    file = open("sudoku_members.csv", "r")
+    file = open("sudoku9x9/sudoku_members.csv", "r")
     members = {}
     for line in file:
         name, passwd, tries, points = line.strip('\n').split(',')
@@ -157,7 +157,7 @@ def load_members():
 
 # 기록 저장하기
 def store_members(members):
-    file = open("sudoku_members.csv", "r")
+    file = open("sudoku9x9/sudoku_members.csv", "r")
     names = members.keys()
     for name in names:
         passwd, tries, points = members[name]
